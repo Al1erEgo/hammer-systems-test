@@ -1,19 +1,30 @@
-import { 
+import {
+  ShoppingCartOutlined,
   DashboardOutlined
 } from '@ant-design/icons';
 import { APP_PREFIX_PATH } from 'configs/AppConfig'
 
 const dashBoardNavTree = [{
-  key: 'home',
+  key: 'dashboards',
   path: `${APP_PREFIX_PATH}/home`,
-  title: 'home',
+  title: 'sidenav.dashboard',
   icon: DashboardOutlined,
   breadcrumb: false,
   submenu: []
 }]
 
+const catalogueNavTree = [{
+  key: 'catalogue',
+  path: `${APP_PREFIX_PATH}/catalogue`,
+  title: 'sidenav.catalogue',
+  icon: ShoppingCartOutlined,
+  breadcrumb: false,
+  submenu: []
+}]
+
 const navigationConfig = [
-  ...dashBoardNavTree
+  ...dashBoardNavTree,
+    ...catalogueNavTree,
 ]
 
 export default navigationConfig;

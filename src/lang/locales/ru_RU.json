@@ -1,7 +1,9 @@
 {
-  "home": "Дашборд",
+  "sidenav.dashboard": "Дашборд",
 
-  "sidenav.dashboard": "Dashboard",
+  "sidenav.catalogue": "Каталог",
+
+
   "sidenav.dashboard.default": "Default",
   "sidenav.dashboard.analytic": "Analytic",
   "sidenav.dashboard.sales": "Sales",
