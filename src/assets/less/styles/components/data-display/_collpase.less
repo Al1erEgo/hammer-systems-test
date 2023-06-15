@@ -1,0 +1,35 @@
+.ant-collapse {
+    & when (@theme = dark) {
+        background-color: lighten(@component-background, 10%);    
+    }
+
+    >.ant-collapse-item {
+
+        >.ant-collapse-header {
+            padding: 16px 40px;
+        }
+    }
+}
+
+.ant-collapse-content {
+
+    >.ant-collapse-content-box {
+        padding: 1rem;
+    }
+}
+
+.ant-collapse-borderless {
+    background-color: @component-background;
+
+    >.ant-collapse-item {
+
+        >.ant-collapse-header {
+            font-size: @heading-4-size;
+            font-weight: @font-weight-semibold;
+        }
+    }
+
+    &.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
+        top: 21px;
+    }
+}
