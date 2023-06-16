@@ -18,11 +18,11 @@ const mainNavTree = [{
     icon: '',
     breadcrumb: false,
     submenu: [{
-        key: 'main-dashboards',
-        path: `${APP_PREFIX_PATH}/main`,
+        key: 'main-dashboard',
+        path: `${APP_PREFIX_PATH}/main/dashboard`,
         title: 'sidenav.main.dashboard',
         icon: DashboardOutlined,
-        breadcrumb: false,
+        breadcrumb: true,
         submenu: []
     },
         {
@@ -76,13 +76,13 @@ const mainNavTree = [{
         },
         {
             key: 'main-clients',
-            path: `${APP_PREFIX_PATH}/main/clients/list`,
+            path: `${APP_PREFIX_PATH}/main/clients`,
             title: 'sidenav.main.clients',
             icon: UserOutlined,
             breadcrumb: true,
             submenu: [{
                 key: 'main-clients-combos',
-                path: `${APP_PREFIX_PATH}/main/clients/list`,
+                path: `${APP_PREFIX_PATH}/main/clients/user-list`,
                 title: 'sidenav.main.clients.list',
                 icon: '',
                 breadcrumb: true,
