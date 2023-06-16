@@ -1,8 +1,19 @@
-import {SET_USERS, SHOW_LOADING} from "../constants/Users";
+import {
+    GET_USERS,
+    HIDE_USERS_LOADING,
+    SET_USERS,
+    SHOW_USERS_LOADING
+} from "../constants/Users";
 
-export const showLoading = () => {
+export const showUsersLoading = () => {
     return {
-        type: SHOW_LOADING,
+        type: SHOW_USERS_LOADING,
+    };
+};
+
+export const hideUsersLoading = () => {
+    return {
+        type: HIDE_USERS_LOADING,
     };
 };
 
@@ -10,5 +21,11 @@ export const setUsers = (users) => {
     return {
         type: SET_USERS,
         users
+    };
+};
+
+export const getUsers = () => {
+    return {
+        type: GET_USERS,
     };
 };

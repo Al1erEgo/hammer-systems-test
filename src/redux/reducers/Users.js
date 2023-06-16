@@ -1,4 +1,4 @@
-import {SET_USERS, SHOW_LOADING} from "../constants/Users";
+import {SET_USERS, SHOW_USERS_LOADING, HIDE_USERS_LOADING} from "../constants/Users";
 
 const initState = {
     loading: false,
@@ -7,16 +7,22 @@ const initState = {
 
 const users = (state = initState, action) => {
     switch (action.type) {
-        case SHOW_LOADING: {
+        case SHOW_USERS_LOADING: {
                 return {
                     ...state,
                     loading: true
                 }
             }
+        case HIDE_USERS_LOADING: {
+            return {
+                ...state,
+                loading: false
+            }
+        }
         case SET_USERS: {
             return {
                 ...state,
-                users: action.users,
+                usersList: action.users,
                 loading: false
             }
         }

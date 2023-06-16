@@ -1,27 +1,23 @@
-import {AUTH_TOKEN} from "../constants/Auth";
-import FirebaseService from "../../services/FirebaseService";
-import {showAuthMessage, signInWithFacebookAuthenticated} from "../actions/Auth";
-import {SET_USERS} from "../constants/Users";
+import {GET_USERS} from "../constants/Users";
 import { all, takeEvery, put, fork, call } from 'redux-saga/effects';
+import usersService from "../../services/UsersService";
+import {hideUsersLoading, setUsers, showUsersLoading} from "../actions/Users";
 
-export function* geUsers() {
-    yield takeEvery(SET_USERS, function* () {
+export function* getUsers() {
+    yield takeEvery(GET_USERS, function* () {
         try {
-            const user = yield call(FirebaseService.signInFacebookRequest);
-            if (user.message) {
-                yield put(showAuthMessage(user.message));
-            } else {
-                localStorage.setItem(AUTH_TOKEN, user.user.uid);
-                yield put(signInWithFacebookAuthenticated(user.user.uid));
-            }
+            yield put(showUsersLoading())
+            const users = yield call(usersService.getUsers);
+            yield put(setUsers(users));
+            yield put(hideUsersLoading())
         } catch (error) {
-            yield put(showAuthMessage(error));
+            yield put(hideUsersLoading())
         }
     });
 }
 
 export default function* rootSaga() {
     yield all([
-        fork(geUsers),
+        fork(getUsers),
     ]);
 }

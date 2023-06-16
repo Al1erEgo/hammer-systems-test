@@ -1,2 +1,4 @@
-export const SHOW_LOADING = 'SHOW_LOADING'
+export const SHOW_USERS_LOADING = 'SHOW_USERS_LOADING'
+export const HIDE_USERS_LOADING = 'HIDE_USERS_LOADING'
 export const SET_USERS = 'SET_USERS'
+export const GET_USERS = 'GET_USERS'
