@@ -1,38 +1,63 @@
-import {Redirect, useParams} from "react-router-dom";
+import {Redirect, useHistory, useParams} from "react-router-dom";
 import {connect} from "react-redux";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {APP_PREFIX_PATH} from "../../../../../configs/AppConfig";
-import {Button, Col, DatePicker, Form, Input, Row} from "antd";
+import {Button, Card, Col, Form, Input, Row} from "antd";
 import {ROW_GUTTER} from "../../../../../constants/ThemeConstant";
+import Loading from "../../../../../components/shared-components/Loading";
 
 
 export const EditUser = (props) => {
+    const [loading, setLoading] = useState(false)
+    const {usersList, history} = props
     const {id} = useParams()
-    const user = props.usersList.find(user => user.id === +id)
+    const user = usersList.find(user => user.id === +id)
 
+    const onSubmit = () => {
+        setLoading(true)
+    }
+
+    useEffect(()=>{
+        if(loading){setTimeout(()=>{
+            history.push(`${APP_PREFIX_PATH}/main/clients/users-list`)
+        }, 2000)}
+    },[loading])
+
+    if (loading) return <Loading cover={'content'} />
 
     if (!user) return <Redirect exact from={`${props.match.url}`} to={`${APP_PREFIX_PATH}/main/clients/users-list`} />
 
+    const {
+        name,
+        username,
+        email,
+        phone,
+        website,
+        address: {city, street},
+        company: {name: companyName, catchPhrase}
+    } = user
+
     return (
-        <>
-            <div className="mt-4">
+        <Card title={'Редактирование профиля'} bodyStyle={{'padding': '20px'}}>
+            <div>
                 <Form
                     name="basicInformation"
                     layout="vertical"
                     initialValues={
                         {
-                            'name': '',
-                            'email': '',
-                            'username': '',
+                            'name': name,
+                            'email': email,
+                            'username': username,
                             'dateOfBirth': '',
-                            'phoneNumber': '',
-                            'website': '',
-                            'address': '',
-                            'city': '',
-                            'postcode': ''
+                            'phoneNumber': phone,
+                            'website': website,
+                            'address': street,
+                            'city': city,
+                            'companyName': companyName,
+                            'catchPhrase': catchPhrase,
                         }
                     }
-                    onFinish={()=>{}}
+                    onFinish={onSubmit}
                     onFinishFailed={()=>{}}
                 >
                     <Row>
@@ -40,7 +65,7 @@ export const EditUser = (props) => {
                             <Row gutter={ROW_GUTTER}>
                                 <Col xs={24} sm={24} md={12}>
                                     <Form.Item
-                                        label="Name"
+                                        label="Имя"
                                         name="name"
                                         rules={[
                                             {
@@ -54,7 +79,7 @@ export const EditUser = (props) => {
                                 </Col>
                                 <Col xs={24} sm={24} md={12}>
                                     <Form.Item
-                                        label="Username"
+                                        label="Никнейм"
                                         name="username"
                                         rules={[
                                             {
@@ -68,7 +93,7 @@ export const EditUser = (props) => {
                                 </Col>
                                 <Col xs={24} sm={24} md={12}>
                                     <Form.Item
-                                        label="Email"
+                                        label="Электронная почта"
                                         name="email"
                                         rules={[{
                                             required: true,
@@ -81,15 +106,7 @@ export const EditUser = (props) => {
                                 </Col>
                                 <Col xs={24} sm={24} md={12}>
                                     <Form.Item
-                                        label="Date of Birth"
-                                        name="dateOfBirth"
-                                    >
-                                        <DatePicker className="w-100"/>
-                                    </Form.Item>
-                                </Col>
-                                <Col xs={24} sm={24} md={12}>
-                                    <Form.Item
-                                        label="Phone Number"
+                                        label="Номер телефона"
                                         name="phoneNumber"
                                     >
                                         <Input />
@@ -97,15 +114,15 @@ export const EditUser = (props) => {
                                 </Col>
                                 <Col xs={24} sm={24} md={12}>
                                     <Form.Item
-                                        label="Website"
+                                        label="Вебсайт"
                                         name="website"
                                     >
                                         <Input />
                                     </Form.Item>
                                 </Col>
-                                <Col xs={24} sm={24} md={24}>
+                                <Col xs={24} sm={24} md={12}>
                                     <Form.Item
-                                        label="Address"
+                                        label="Адрес"
                                         name="address"
                                     >
                                         <Input />
@@ -113,7 +130,7 @@ export const EditUser = (props) => {
                                 </Col>
                                 <Col xs={24} sm={24} md={12}>
                                     <Form.Item
-                                        label="City"
+                                        label="Город"
                                         name="city"
                                     >
                                         <Input />
@@ -121,8 +138,16 @@ export const EditUser = (props) => {
                                 </Col>
                                 <Col xs={24} sm={24} md={12}>
                                     <Form.Item
-                                        label="Post code"
-                                        name="postcode"
+                                        label="Компания"
+                                        name="companyName"
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                </Col>
+                                <Col xs={24} sm={24} md={24}>
+                                    <Form.Item
+                                        label="Слоган"
+                                        name="catchPhrase"
                                     >
                                         <Input />
                                     </Form.Item>
@@ -135,7 +160,7 @@ export const EditUser = (props) => {
                     </Row>
                 </Form>
             </div>
-        </>
+        </Card>
     )
 }
 
