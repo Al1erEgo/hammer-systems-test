@@ -19,12 +19,28 @@ const catalogueNavTree = [{
   title: 'sidenav.catalogue',
   icon: ShoppingCartOutlined,
   breadcrumb: false,
-  submenu: []
+  submenu: [
+    {
+      key: 'goods',
+      path: `${APP_PREFIX_PATH}/catalogue/goods`,
+      title: 'sidenav.catalogue.goods',
+      icon: '',
+      breadcrumb: false,
+      submenu: [{
+        key: 'goods',
+        path: `${APP_PREFIX_PATH}/catalogue/goods`,
+        title: 'sidenav.catalogue.goods',
+        icon: '',
+        breadcrumb: false,
+        submenu: []
+      }]
+    }
+  ]
 }]
 
 const navigationConfig = [
   ...dashBoardNavTree,
-    ...catalogueNavTree,
+  ...catalogueNavTree,
 ]
 
 export default navigationConfig;

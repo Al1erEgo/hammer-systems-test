@@ -46,13 +46,7 @@ const SideNavContent = (props) => {
       defaultOpenKeys={setDefaultOpen(routeInfo?.key)}
       className={hideGroupTitle ? "hide-group-title" : ""}
     >
-      {navigationConfig.map((menu) =>
-        menu.submenu.length > 0 ? (
-          <Menu.ItemGroup
-            key={menu.key}
-            title={setLocale(localization, menu.title)}
-          >
-            {menu.submenu.map((subMenuFirst) =>
+            {navigationConfig.map((subMenuFirst) =>
               subMenuFirst.submenu.length > 0 ? (
                 <SubMenu
                   icon={
@@ -83,15 +77,6 @@ const SideNavContent = (props) => {
                 </Menu.Item>
               )
             )}
-          </Menu.ItemGroup>
-        ) : (
-          <Menu.Item key={menu.key}>
-            {menu.icon ? <Icon type={menu?.icon} /> : null}
-            <span>{setLocale(localization, menu?.title)}</span>
-            {menu.path ? <Link onClick={() => closeMobileNav()} to={menu.path} /> : null}
-          </Menu.Item>
-        )
-      )}
     </Menu>
   );
 };

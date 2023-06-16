@@ -1,15 +1,15 @@
 [
-	{
-        "langName": "English",
-        "langId": "en",
-        "icon": "us",
-        "lang": "En"
-    },
     {
         "langName": "Русский",
         "langId": "ru",
         "icon": "ru",
         "lang": "Ru"
+    },
+	{
+        "langName": "English",
+        "langId": "en",
+        "icon": "us",
+        "lang": "En"
     },
     {
         "langName": "Chinese",
