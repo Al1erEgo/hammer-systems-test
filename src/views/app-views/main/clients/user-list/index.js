@@ -2,7 +2,6 @@ import React, {Component, useEffect, useState} from 'react'
 import {Card, Table, Tag, Tooltip, message, Button, Typography} from 'antd';
 import { EyeOutlined, DeleteOutlined } from '@ant-design/icons';
 import moment from 'moment';
-import UserView from './UserView';
 import AvatarStatus from 'components/shared-components/AvatarStatus';
 import {getUsers} from "../../../../../redux/actions/Users";
 import {connect} from "react-redux";
@@ -101,7 +100,6 @@ export class UserList extends Component {
         return (
             <Card bodyStyle={{'padding': '0px'}}>
                 <Table columns={tableColumns} dataSource={users} rowKey='id' />
-                <UserView data={selectedUser} visible={userProfileVisible} close={()=> {this.closeUserProfile()}}/>
             </Card>
         )
     }
@@ -126,7 +124,14 @@ const tableColumns = [
                 <Typography.Text strong>{info.name}</Typography.Text>
                 <Typography.Text type="secondary">{info.username}</Typography.Text>
             </div>
-        )
+        ),
+        sorter: {
+            compare: (a, b) => {
+                a = a.info.name.toLowerCase();
+                b = b.info.name.toLowerCase();
+                return a > b ? -1 : b > a ? 1 : 0;
+            },
+        },
     },
     {
         title: 'Контакты',
@@ -145,7 +150,14 @@ const tableColumns = [
                 <Typography.Text strong>{address.city}</Typography.Text>
                 <Typography.Text type="secondary">{address.street}</Typography.Text>
             </div>
-        )
+        ),
+        sorter: {
+            compare: (a, b) => {
+                a = a.address.city.toLowerCase();
+                b = b.address.city.toLowerCase();
+                return a > b ? -1 : b > a ? 1 : 0;
+            },
+        },
     },
     {
         title: 'Компания',
@@ -154,12 +166,19 @@ const tableColumns = [
                 <Typography.Text strong>{company.name}</Typography.Text>
                 <Typography.Text type="secondary">{company.catchPhrase}</Typography.Text>
             </div>
-        )
+        ),
+        sorter: {
+            compare: (a, b) => {
+                a = a.company.name.toLowerCase();
+                b = b.company.name.toLowerCase();
+                return a > b ? -1 : b > a ? 1 : 0;
+            },
+        },
     }
 ]
 
 
-const UserList2 = (props) => {
+const UsersList = (props) => {
     const {loading, usersList, getUsers} = props
     const [usersToRender, setUsersToRender] = useState([])
 
@@ -182,7 +201,6 @@ const UserList2 = (props) => {
                 dataSource={usersToRender}
                 rowKey={'key'}
             />
-            {/*<UserView data={selectedUser} visible={userProfileVisible} close={()=> {this.closeUserProfile()}}/>*/}
         </Card>
     )
 }
@@ -196,4 +214,4 @@ const mapDispatchToProps = {
     getUsers
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserList2)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersList)
