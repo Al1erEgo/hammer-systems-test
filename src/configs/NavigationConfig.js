@@ -7,7 +7,7 @@ import {
     GiftOutlined,
     ShopOutlined,
     TeamOutlined,
-    MailOutlined, SettingOutlined, MobileOutlined,
+    MailOutlined, SettingOutlined, MobileOutlined, ToolOutlined,
 } from '@ant-design/icons';
 import { APP_PREFIX_PATH } from 'configs/AppConfig'
 
@@ -25,6 +25,14 @@ const mainNavTree = [{
         breadcrumb: true,
         submenu: []
     },
+        {
+            key: 'main-constructor',
+            path: `${APP_PREFIX_PATH}/main/constructor`,
+            title: 'sidenav.main.constructor',
+            icon: ToolOutlined,
+            breadcrumb: true,
+            submenu: []
+        },
         {
             key: 'main-catalogue',
             path: `${APP_PREFIX_PATH}/main/catalogue`,
