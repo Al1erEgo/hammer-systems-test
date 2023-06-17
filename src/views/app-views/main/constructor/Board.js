@@ -1,10 +1,11 @@
 import {Card} from "antd";
 
+
 const Board = () => {
     const board = []
 
     return (
-        <Card title={'План помещения'} bodyStyle={{'padding': '20px'}}>
+        <Card title={'Карта заведения'} bodyStyle={{'padding': '20px'}}>
 
         </Card>
     )
