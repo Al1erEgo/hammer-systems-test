@@ -1,8 +1,9 @@
 import React from 'react';
 
 const Element = () => {
-    return (
-        <img src="./hammer-systems-test/img/elements/table.png" alt='table'/>
+    return (<>
+        <img src={process.env.PUBLIC_URL + '/img/elements/table.png'} alt='table'/>
+        </>
     );
 };
 
