@@ -22,10 +22,11 @@ service.interceptors.request.use(config => {
     config.headers[TOKEN_PAYLOAD_KEY] = jwtToken
   }
 
-  if (!jwtToken && !config.headers[PUBLIC_REQUEST_KEY]) {
-		history.push(ENTRY_ROUTE)
-		window.location.reload();
-  }
+  // if (!jwtToken && !config.headers[PUBLIC_REQUEST_KEY]) {
+	// 	history.push(ENTRY_ROUTE)
+	// 	window.location.reload();
+  // }
+	//cause redirect
 
   return config
 }, error => {
