@@ -7,29 +7,45 @@ import {useState} from "react";
 import {v1 as uuid} from "uuid";
 import ActionsMenu from "./ActionsMenu";
 
+const getText = (file) =>
+    new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.readAsText(file)
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = error => reject(error)
+    })
+
+const placeNewElement = (x, y, type, setElement) => {
+    setElement(prev => {
+        const id = uuid()
+        const newElementsOnBoard = [...prev]
+        newElementsOnBoard[x][y] = {type, id}
+        newElementsOnBoard[10][id] = [x, y]
+        return newElementsOnBoard
+    })
+}
+
+const relocateElement = (x, y, type, id, setElement) => {
+    setElement(prev => {
+        const newElementsOnBoard = [...prev]
+        const oldX = newElementsOnBoard[10][id][0]
+        const oldY = newElementsOnBoard[10][id][1]
+        newElementsOnBoard[oldX][oldY] = undefined
+        newElementsOnBoard[x][y] = {type, id}
+        newElementsOnBoard[10][id] = [x, y]
+        return newElementsOnBoard
+    })
+}
+
 const Constructor = () => {
     const [elementsOnBoard, setElementsOnBoard] = useState(
         [[], [], [], [], [], [], [], [], [], [], {}])
 
     const elementMover = (x, y, type, id) => {
         if (id) {
-            setElementsOnBoard(prev => {
-                const newElementsOnBoard = [...prev]
-                const oldX = newElementsOnBoard[10][id][0]
-                const oldY = newElementsOnBoard[10][id][1]
-                newElementsOnBoard[oldX][oldY] = undefined
-                newElementsOnBoard[x][y] = {type, id}
-                newElementsOnBoard[10][id] = [x, y]
-                return newElementsOnBoard
-            })
+            relocateElement(x, y, type, id, setElementsOnBoard)
         } else {
-            setElementsOnBoard(prev => {
-                const id = uuid()
-                const newElementsOnBoard = [...prev]
-                newElementsOnBoard[x][y] = {type, id}
-                newElementsOnBoard[10][id] = [x, y]
-                return newElementsOnBoard
-            })
+            placeNewElement(x, y, type, setElementsOnBoard)
         }
     }
 
@@ -42,15 +58,7 @@ const Constructor = () => {
         element.click();
     };
 
-    const getText = (file) =>
-        new Promise((resolve, reject) => {
-            const reader = new FileReader()
-            reader.readAsText(file)
-            reader.onload = () => resolve(reader.result)
-            reader.onerror = error => reject(error)
-        })
-
-    const uploadCoordinatesFromFile = async (action) => {
+    const loadCoordinatesFromFile = async (action) => {
         if (action) {
             const text = await getText(action.file)
             const newElementsOnBoard = JSON.parse(text)
@@ -64,8 +72,8 @@ const Constructor = () => {
                 <Col className="gutter-row" span={6}>
                     <ElementsMenu locateElement={elementMover}/>
                     <ActionsMenu
-                        save={saveCoordinatesToFile}
-                        load={uploadCoordinatesFromFile}
+                        onSave={saveCoordinatesToFile}
+                        onLoad={loadCoordinatesFromFile}
                     />
                 </Col>
                 <Col className="gutter-row" span={18}>

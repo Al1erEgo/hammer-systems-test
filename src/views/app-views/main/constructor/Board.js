@@ -18,7 +18,6 @@ const renderElement = (x, y, addElementOnBoard, elementsOnBoard) => {
 const renderCell = (i, addElementOnBoard, elementsOnBoard) => {
     const x = i % 10
     const y = Math.floor(i / 10)
-
     return (
         <div key={i} style={{minWidth: '3vw', minHeight: '3vw', maxWidth: '3vw', maxHeight: '3vw'}}>
             <BoardCell x={x} y={y}>
@@ -30,11 +29,9 @@ const renderCell = (i, addElementOnBoard, elementsOnBoard) => {
 
 const getBoard = (addElementOnBoard, elementsOnBoard) => {
     const board = []
-
     for (let i = 0; i < 100; i++) {
         board.push(renderCell(i, addElementOnBoard, elementsOnBoard))
     }
-
     return board
 }
 
