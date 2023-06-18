@@ -10,7 +10,6 @@ const Element = ({locateElement, type, width, id}) => {
             end: (item, monitor) => {
                 const dropResult = monitor.getDropResult()
                 if (item && dropResult) {
-                    console.log('item-id', item.id)
                     locateElement(dropResult.x, dropResult.y, type, item.id)
                 }
             },
