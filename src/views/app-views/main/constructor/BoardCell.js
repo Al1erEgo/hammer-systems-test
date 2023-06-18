@@ -4,7 +4,7 @@ import {ElementTypes} from "./ConstructorData";
 const BoardCell = ({ x, y, children}) => {
     const [{isOver}, drop] = useDrop(
         () => ({
-            accept: [ElementTypes.TABLE, ElementTypes.TABLE2],
+            accept: [...Object.values(ElementTypes)],
             drop: () => ({x, y}),
             collect: (monitor) => ({
                 isOver: !!monitor.isOver() ? 'green' : 'lightgray',
