@@ -1,12 +1,12 @@
 # Test task for Hammer Systems
 
-Task represents boilerplate project where necessary to add some functionality, such as:
- - Populate sidebar menu with point
- - Implement 'Clients'->'Clients list' points with fetching users from jsonplaceholder
- - Implement profile editing with fake request on edit
- - Implement Constructor module with different restaurant furniture 
-which possible place to board which represents the schema of room by dragging from menu and dropping to the board.
- - Implement import and export of current schema with furniture from\to .txt file 
+Assignment represents boilerplate project where necessary to add some functionality, such as:
+- Populate sidebar menu with points
+- Implement 'Clients'->'Clients list' points with fetching users from jsonplaceholder
+- Implement profile editing with fake request on edit
+- Implement Constructor module with different restaurant furniture
+  which possible to place on board by dragging from menu and dropping to the board. Board represents the schema of room.
+- Implement import and export of current schema with furniture from\to .txt file
 
 
 ## Getting Started
