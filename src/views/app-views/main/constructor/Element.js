@@ -21,17 +21,14 @@ const Element = ({locateElement, type, width, id}) => {
     )
 
     return (
-        <>
-            <div>
-                <img
-                    ref={drag}
-                    style={{opacity}}
-                    src={process.env.PUBLIC_URL + `/img/elements/${type}.png`}
-                    width={width ? width : '70px'}
-                    alt='table'
-                />
-            </div>
-        </>
+        <img
+            ref={drag}
+            style={{opacity}}
+            src={process.env.PUBLIC_URL + `/img/elements/${type}.png`}
+            width={width ? width : '70px'}
+            alt='table'
+        />
+
     )
 };
 

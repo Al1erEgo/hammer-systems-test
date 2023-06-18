@@ -71,15 +71,19 @@ const Constructor = () => {
             <Row gutter={16}>
                 <Col className="gutter-row" span={6}>
                     <ElementsMenu locateElement={elementMover}/>
-                    <ActionsMenu
-                        onSave={saveCoordinatesToFile}
-                        onLoad={loadCoordinatesFromFile}
-                    />
                 </Col>
                 <Col className="gutter-row" span={18}>
                     <Board
                         addElementOnBoard={elementMover}
                         elementsOnBoard={elementsOnBoard}
+                    />
+                </Col>
+            </Row>
+            <Row gutter={16}>
+                <Col className="gutter-row" span={24}>
+                    <ActionsMenu
+                        onSave={saveCoordinatesToFile}
+                        onLoad={loadCoordinatesFromFile}
                     />
                 </Col>
             </Row>
