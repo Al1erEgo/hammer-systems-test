@@ -2,22 +2,23 @@ import React from 'react';
 import {useDrag} from "react-dnd";
 
 
-const Element = ({cleanElement, locateElement, type, width}) => {
+const Element = ({locateElement, type, width, id}) => {
     const [{opacity}, drag] = useDrag(
         () => ({
             type,
-            item: {type},
+            item: {id},
             end: (item, monitor) => {
                 const dropResult = monitor.getDropResult()
                 if (item && dropResult) {
-                    locateElement(dropResult.x, dropResult.y, type)
+                    console.log('item-id', item.id)
+                    locateElement(dropResult.x, dropResult.y, type, item.id)
                 }
             },
             collect: (monitor) => ({
                 opacity: monitor.isDragging() ? 0.4 : 1,
             }),
         }),
-        [type],
+        [locateElement, type],
     )
 
     return (

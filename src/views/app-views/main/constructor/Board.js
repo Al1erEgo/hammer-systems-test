@@ -6,10 +6,11 @@ const renderElement = (x, y, addElementOnBoard, elementsOnBoard) => {
     if (elementsOnBoard[x][y]) {
         return (
         <Element
-
             locateElement={addElementOnBoard}
-            type={elementsOnBoard[x][y]}
-            width={'100%'}/>
+            type={elementsOnBoard[x][y].type}
+            width={'100%'}
+            id={elementsOnBoard[x][y].id}
+        />
         )
     }
 }

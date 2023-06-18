@@ -5,8 +5,9 @@ const BoardCell = ({x, y, children}) => {
     const [{ isOver, canDrop }, drop] = useDrop(
         () => ({
             accept: [ElementTypes.TABLE, ElementTypes.TABLE2],
-            drop: () => ({x, y}),
-            // canDrop: () => canMoveKnight(x, y),
+            drop: (item) => {
+                return {x, y}
+            },
             collect: (monitor) => ({
                 isOver: !!monitor.isOver(),
                 canDrop: !!monitor.canDrop()
