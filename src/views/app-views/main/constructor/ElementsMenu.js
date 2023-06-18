@@ -1,10 +1,11 @@
 import {Card} from "antd";
 import Element from "./Element";
+import {ElementTypes} from "./ConstructorData";
 
-const ElementsMenu = () => {
+const ElementsMenu = ({addOnBoard}) => {
     return(
         <Card title={'Меню элементов'} bodyStyle={{'padding': '20px'}}>
-            <Element />
+            <Element addOnBoard={addOnBoard} type={ElementTypes.TABLE}/>
         </Card>
     )
 }
