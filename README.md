@@ -1,6 +1,6 @@
-# Test assignment for Hammer Systems
+# Test task for Hammer Systems
 
- Assignment represents boilerplate project where necessary to add some functionality, such as:
+Task represents boilerplate project where necessary to add some functionality, such as:
  - Populate sidebar menu with point
  - Implement 'Clients'->'Clients list' points with fetching users from jsonplaceholder
  - Implement profile editing with fake request on edit
