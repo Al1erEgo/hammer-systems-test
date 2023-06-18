@@ -1,3 +1,4 @@
 export const ElementTypes = {
-    TABLE: 'table'
+    TABLE: 'table',
+    TABLE2: 'table2'
 }

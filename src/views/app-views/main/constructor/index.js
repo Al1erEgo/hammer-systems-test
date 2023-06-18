@@ -9,12 +9,19 @@ const Constructor = () => {
     const [elementsOnBoard, setElementsOnBoard] = useState(
         [[], [] ,[] ,[] ,[], [], [] ,[] ,[] ,[]])
 
-    const addOnBoard = (x, y, type) => {
+    const addElementOnBoard = (x, y, type) => {
         console.log('addOnBoard')
         setElementsOnBoard( prev => {
             const newElementsOnBoard = [...prev]
             newElementsOnBoard[x][y] = type
             return newElementsOnBoard
+        })
+    }
+
+    const relocateElement = (x, y, type) => {
+        setElementsOnBoard( prev => {
+            const newElementsOnBoard = [...prev]
+            newElementsOnBoard[x][y] = undefined
         })
     }
 
@@ -24,11 +31,11 @@ const Constructor = () => {
         <DndProvider backend={HTML5Backend}>
             <Row gutter={16}>
                 <Col className="gutter-row" span={6}>
-                    <ElementsMenu addOnBoard={addOnBoard}/>
+                    <ElementsMenu locateElement={addElementOnBoard}/>
                 </Col>
                 <Col className="gutter-row" span={18}>
                     <Board
-                        addOnBoard={addOnBoard}
+                        addElementOnBoard={addElementOnBoard}
                         elementsOnBoard={elementsOnBoard}
                     />
                 </Col>

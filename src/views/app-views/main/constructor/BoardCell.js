@@ -1,10 +1,10 @@
 import {useDrop} from "react-dnd";
 import {ElementTypes} from "./ConstructorData";
 
-const BoardCell = ({x, y, addOnBoard, children}) => {
+const BoardCell = ({x, y, children}) => {
     const [{ isOver, canDrop }, drop] = useDrop(
         () => ({
-            accept: ElementTypes.TABLE,
+            accept: [ElementTypes.TABLE, ElementTypes.TABLE2],
             drop: () => ({x, y}),
             // canDrop: () => canMoveKnight(x, y),
             collect: (monitor) => ({
