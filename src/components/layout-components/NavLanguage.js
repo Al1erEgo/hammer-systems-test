@@ -15,7 +15,7 @@ const SelectedLanguage = ({ locale }) => {
 	const {langName, icon} = language
 	return (
 		<div className="d-flex align-items-center">
-			<img style={{maxWidth: '20px'}} src={`/img/flags/${icon}.png`} alt={langName}/>
+			<img style={{maxWidth: '20px'}} src={process.env.PUBLIC_URL + `/img/flags/${icon}.png`} alt={langName}/>
 			<span className="font-weight-semibold ml-2">{langName} <DownOutlined className="font-size-xs"/></span>
 		</div>
 	)
